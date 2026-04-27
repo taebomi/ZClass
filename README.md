@@ -1,38 +1,28 @@
-#컴퓨터공학종합설계 Z-Class
--------------
-### 모듈 결합 시 구현 예정
-1. 출석부 기능
-- 학생이 수업 참가 시 입장 전 페이지에서 얼굴 인식 출석 체크 후 입장
+# ZClass — 웹 원격 강의 플랫폼
 
-2. 회원 가입 시 얼굴 촬영
+> 코로나 시기 온라인 강의의 불편한 출석 체크 문제를 해결하기 위해 기획한 웹 기반 화상회의 시스템
 
+**인원:** 3인 협업 | **담당:** 머신러닝 제외 전 영역 (Node.js 백엔드, 프론트엔드, WebRTC, Flask 연동)
 
-### 예정
-1. 강의 참여 시 학생 선생 순서 상관 없도록
+## 기술 스택
+- **백엔드:** Node.js · Express · MongoDB · Socket.io
+- **프론트엔드:** HTML · CSS · EJS
+- **화상회의:** WebRTC (wrtc)
+- **얼굴인식/졸음감지:** Python · Flask · FaceNet · YOLO · dlib (팀원 담당)
 
-2. 출석부 기능
-- 선생님이 수업 시작 전 접속했을 경우 수업 시작 시간이 되면, 출석한 학생 외 모두 결석 처리
-- 선생님이 수업 시작 보다 늦게 접속한 경우 버튼을 누르면, 현재까지 출석한 학생 외 모두 결석 처리
-- 출석 처리가 끝난 이후에 접속할 경우 지각 처리
+## 주요 구현
+- 수십 명 규모를 가정, P2P 연결 폭증 문제를 고려해 Google Meet를 레퍼런스로 **SFU(Selective Forwarding Unit) 방식** 채택
+- 팀원이 구현한 머신러닝 기반 얼굴인식·졸음감지 Python 모듈을 **Node.js ↔ Flask 간 HTTP 통신**으로 연동
+- Socket.io 실시간 채팅 및 세션 기반 수업 입장 관리
 
-> 유저 정보 수정 기능 - 시간 여유 있을 시    
-> 아이디 / 비밀번호 찾기 기능 - 시간 여유 있을 시
+## 핵심 코드
 
-3. 입장 시간 제한
+| 파일 | 설명 |
+|------|------|
+| [server.js](src/server.js) | WebRTC SFU 구현, Socket.io 이벤트, Flask 연동 |
+| [class.js](src/public/js/3_class/class.js) | 클라이언트 WebRTC 연결, 채팅, 졸음감지 흐름 |
+| [routes/class.js](src/routes/class.js) | 수업 입장, 출석 인증 세션 처리 |
+| [models/attendances.js](src/models/attendances.js) | 출석 데이터 모델 |
 
-4. 입장 중 출석체크 기능
-
-
-### 완료
-
-- 학생
-강의 목록에 해당 요일일 경우에만 출력 (선생님의 경우 강의 수정할 때 목록에 보여야함)
-
-- 학생 & 선생님
-강의 입장 시 수업 시작 시간 10분 전 ~ 30분 후까지만 입장
-
-
-
-
-강의 입장할 때 확인메시지
-시스템 메시지 + 경고음
+## 시연 영상
+[![ZClass 시연 영상](https://img.youtube.com/vi/GqfC0SP4rsg/0.jpg)](https://youtu.be/GqfC0SP4rsg)
