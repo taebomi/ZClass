@@ -2,6 +2,9 @@
 
 > 코로나 시기 온라인 강의의 불편한 출석 체크 문제를 해결하기 위해 기획한 웹 기반 화상회의 시스템
 
+## 시연 영상
+[![ZClass 시연 영상](https://img.youtube.com/vi/GqfC0SP4rsg/0.jpg)](https://youtu.be/GqfC0SP4rsg)
+
 **인원:** 3인 협업 | **담당:** 머신러닝 제외 전 영역 (Node.js 백엔드, 프론트엔드, WebRTC, Flask 연동)
 
 ## 기술 스택
@@ -88,5 +91,3 @@ src/
         └── attendance.js            # 출석 체크 UI 흐름
 ```
 
-## 시연 영상
-[![ZClass 시연 영상](https://img.youtube.com/vi/GqfC0SP4rsg/0.jpg)](https://youtu.be/GqfC0SP4rsg)
